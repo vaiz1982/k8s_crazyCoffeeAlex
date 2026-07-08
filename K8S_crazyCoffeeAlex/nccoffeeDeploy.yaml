@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: networkalexcoffee-deployment             ## we named it ! 
+  labels:
+    app: nccoffee                 ## app we named     
+spec:
+  replicas: 3             ## 3   how many we want out there !
+  selector:
+    matchLabels:
+      app: nccoffee
+  template:
+    metadata:
+      labels:
+        app: nccoffee
+    spec:
+      containers:                        ##what container we want to use! 
+        - name: static-site            ##name of it
+          image: thenetworkchuck/nccoffee:pourover            ## pulling from dockr hub
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80   ## websites port! 
